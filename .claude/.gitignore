@@ -1,0 +1,4 @@
+settings.local.json
+CLAUDE.local.md
+*.local.*
+session-history/

@@ -1,0 +1,58 @@
+{
+  "model": "claude-sonnet-4-20250514",
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log --oneline *)",
+      "Bash(git branch *)",
+      "Bash(git add src/*)",
+      "Bash(git commit *)",
+      "Read(*)",
+      "Write(src/**)",
+      "Write(docs/**)",
+      "Write(.claude/**)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(rm -rf *)",
+      "Bash(git push origin main)",
+      "Write(pipeline-output/**)",
+      "Write(.env)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-write.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-bash.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "PIPELINE_OUTPUT_DIR": "./pipeline-output",
+    "LOG_LEVEL": "info",
+    "DEFAULT_MODEL": "claude-sonnet-4-20250514"
+  }
+}
