@@ -6,6 +6,7 @@ description: >
   new agent functions, sub-agents, API clients, shared utilities, or type definitions.
   Also triggers for "write a component", "implement an agent", "add a sub-agent",
   "refactor", "fix a bug", "create a function", "build the dev stage", or any coding task.
+  For UI screen generation from design specs, defer to the design-system-kits skill.
 allowed-tools: Read, Write, Bash(npm run lint), Bash(npm run test), Bash(npx tsc --noEmit)
 ---
 
@@ -17,10 +18,14 @@ allowed-tools: Read, Write, Bash(npm run lint), Bash(npm run test), Bash(npx tsc
 | New Stage 1 sub-agent | src/agents/po/{name}.ts |
 | New Stage 2 sub-agent | src/agents/design/{name}.ts |
 | New Stage 3 sub-agent | src/agents/dev/{name}.ts |
-| New Stage 4 gate | src/agents/qa/{name}.ts |
 | Shared utility | src/shared/{name}.ts |
 | New type/interface | src/types/index.ts |
 | Test for any above | same folder, tests/{name}.test.ts |
+
+## UI code generation
+For generating React Native screens from Design Spec JSON, use the
+`design-system-kits` skill instead. It handles spec-to-code mapping,
+component imports, design tokens, and live preview.
 
 ## Stage orchestrator template
 ```typescript
@@ -50,17 +55,6 @@ export async function subAgentName(input: T): Promise<U> {
 }
 ```
 
-## React component template
-```typescript
-import type { FC } from 'react'
-interface Props { /* all props typed, no any */ }
-export const ComponentName: FC<Props> = ({ prop }) => {
-  return <div style={{ color: 'var(--color-primary)' }}>{prop}</div>
-}
-// Named export — never default export
-// Design tokens via CSS vars — never hardcode colors
-```
-
 ## Checklist before every file write
 - [ ] TypeScript strict — no any, no @ts-ignore
 - [ ] Named exports only
@@ -77,5 +71,4 @@ export const ComponentName: FC<Props> = ({ prop }) => {
 
 ## References
 - references/agent-templates.md — full copy-paste templates
-- references/component-patterns.md — React patterns for UI output
 - scripts/check-conventions.sh — auto-check a file for violations

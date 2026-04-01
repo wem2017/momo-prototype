@@ -4,7 +4,7 @@
 Every stage orchestrator MUST return AgentResult<T>:
 ```typescript
 { status: 'success' | 'error', data: T, runId: string,
-  stage: 'po'|'design'|'dev'|'qa', duration: number, logs: string[], error?: string }
+  stage: 'po'|'design'|'dev', duration: number, logs: string[], error?: string }
 ```
 
 ## Sub-agent pattern
