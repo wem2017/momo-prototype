@@ -258,7 +258,7 @@ Nếu có, share cho tôi — tôi sẽ dùng luôn thay vì build lại.
 
 ---
 
-## Checklist trước khi chuyển sang po-requirements (Phase B)
+## Checklist trước khi chuyển sang Phase B
 
 - [ ] Problem: Rõ ràng, cụ thể
 - [ ] Target user: Biết là ai, context sử dụng
@@ -272,4 +272,4 @@ Nếu có, share cho tôi — tôi sẽ dùng luôn thay vì build lại.
 - [ ] Premise Check: Owner đã confirm 3 premise questions
 - [ ] Scope Option: Owner đã chọn A/B/C
 
-Tất cả check → **tạo Product Brief** → Owner confirm → po-orchestrator chuyển Phase B (po-requirements).
+Tất cả check → **tạo Product Brief** → Owner confirm → po-orchestrator chuyển Phase B (product-craft).

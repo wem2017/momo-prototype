@@ -131,7 +131,7 @@ SCOPE C: Wow Factor — Animations, edge states, tablet. 9/10. (chỉ khi Owner 
 RECOMMENDATION: [X] vì [lý do liên quan mục đích prototype].
 ```
 
-Owner chọn → scope lock → po-orchestrator chuyển sang Phase B (po-requirements).
+Owner chọn → scope lock → po-orchestrator chuyển sang Phase B (product-craft).
 
 ---
 
@@ -152,7 +152,7 @@ Sau 4 Mandatory Elements, chủ động hỏi (gộp vào clarify):
 
 - "Requirements clear đủ rồi" → INVALID. 9 Elements check > judgment.
 - "User biết rõ mình muốn gì" → INVALID. Challenge premises (Round 0).
-- "Skip product-brief vì chỉ có text" → INVALID. Product brief luôn required trước po-requirements.
+- "Skip product-brief vì chỉ có text" → INVALID. Product brief luôn required trước Phase B.
 - "Modify nhỏ nên không cần brief" → INVALID. Mọi thay đổi cần brief để design có context đúng.
 - "Sửa luôn cả màn hình cho nhanh" → INVALID. Modify = component-level. Muốn làm lại cả màn hình → chuyển Mode B.
 

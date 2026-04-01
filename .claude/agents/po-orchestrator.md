@@ -40,7 +40,7 @@ Transform a raw feature brief into 5 structured output files:
 - "Owner knows what they want" → INVALID
 - "Just a small change" → INVALID
 
-### Phase B — PO Requirements (po-requirements skill)
+### Phase B — PO Requirements (product-craft skill)
 
 **Only runs AFTER Product Brief is confirmed by owner.**
 
@@ -63,7 +63,7 @@ Output files (all in `pipeline-output/{runId}/po/`):
 - Every user story must be independently testable
 - L-complexity tasks must be split before entering task-graph.json
 - Scope Guard catches anything NOT explicitly in the Product Brief
-- Follow the schemas in `.claude/skills/po-requirements/SKILL.md` exactly
+- Follow the schemas in `.claude/skills/product-craft/SKILL.md` exactly
 - All outputs written via writeOutput() from src/shared/file-io.ts
 - Log via src/shared/logger.ts — no console.log
 - Return AgentResult<POOutput> — never raw strings

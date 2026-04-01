@@ -9,7 +9,7 @@ Human PO provides a brief; pipeline outputs production-ready code with live prev
 ## Pipeline flow
 ```
 Stage 1: PO Agent          → Product Brief (Phase A) + PRD, user stories, task graph (Phase B)
-         (po-orchestrator)    uses: product-craft skill (Phase A) → po-requirements skill (Phase B)
+         (po-orchestrator)    uses: product-craft skill (Phase A + Phase B)
               ↓
 Stage 2: Design Agent       → Design Spec JSON per screen
          (design-specialist)  uses: ui-composer skill
@@ -23,7 +23,7 @@ Stage 3: Dev Agent          → React Native code + live preview
 Raw Feature Brief
   ↓ Phase A — product-craft skill
 Product Brief (validated with owner, premise check, scope lock)
-  ↓ Phase B — po-requirements skill (parallel sub-agents)
+  ↓ Phase B — product-craft skill (parallel sub-agents)
 PRD + User Stories + Task Graph + Acceptance Criteria
 ```
 
@@ -49,18 +49,16 @@ npm run lint                       # ESLint + tsc --noEmit
 | Agent | Phase | Skill | Input | Output |
 |-------|-------|-------|-------|--------|
 | po-orchestrator | A | product-craft | Raw feature brief | Product Brief (validated) |
-| po-orchestrator | B | po-requirements | Product Brief | PRD, user stories, task graph |
+| po-orchestrator | B | product-craft | Product Brief | PRD, user stories, task graph |
 | design-specialist | — | ui-composer | PRD + user stories | Design Spec JSON per screen |
 | dev-engineer | — | design-system-kits | Design Spec JSON | React Native .tsx + live preview |
 
 ## Folder map
 - .claude/agents/         — Agent definitions (po-orchestrator, design-specialist, dev-engineer)
 - .claude/skills/         — Skill definitions with references
-  - product-craft/        — Stage 1 Phase A skill (product brief from vague input)
-  - po-requirements/      — Stage 1 Phase B skill (PRD, user stories, task graph)
+  - product-craft/        — Stage 1 skill (Phase A: product brief + Phase B: PRD, user stories, task graph)
   - ui-composer/          — Stage 2 skill (design spec composition)
   - design-system-kits/   — Stage 3 skill (code generation + preview)
-  - code-development/     — General TypeScript dev conventions
 - src/agents/po/          — Stage 1: PO orchestrator + sub-agents
 - src/agents/design/      — Stage 2: design agent + sub-agents
 - src/agents/dev/         — Stage 3: dev agent + sub-agents
