@@ -9,6 +9,7 @@
 - Icon PHẢI dùng tên từ icon.json (format: `category_name`)
 - Max 3 lượt hỏi clarify per interaction
 - Corpus path: `00-corpus/momo-design-system/` (KHÔNG PHẢI `corpus/`)
+- File paths trong SKILL.md/AgentDef: relative to agent root (`momo-prototype-kit-agent/`)
 
 ---
 

@@ -9,7 +9,7 @@ description: >
 
 **Owner:** Product team
 **Role:** Từ vague input → structured Product Brief
-**Output:** `pipeline-output/{runId}/po/product-brief.md`
+**Output:** `products/{team}/product-brief.md`
 
 ---
 
@@ -17,8 +17,8 @@ description: >
 
 1. Read `references/philosophy.md` (North Star + principles)
 2. Read `references/anti-patterns-global.md` (blocked rationalizations)
-3. Read `references/question-format.md` + `references/product-brief.template.md` + `references/constraints-global.md` + `references/document-trail.md` + `references/qmd-guide.md`
-4. Scan `pipeline-output/{runId}/po/` cho existing artifacts (resume nếu có)
+3. Read `references/question-format.md` + `references/output-templates/product-brief.template.md` + `references/constraints-global.md` + `references/document-trail.md` + `references/qmd-guide.md`
+4. Scan `products/{team}/` cho existing artifacts (resume nếu có)
 
 KHÔNG chạy bất kỳ mode nào nếu chưa complete 4 bước trên.
 
@@ -48,7 +48,7 @@ Owner nói "cứ build đi" → ghi decision-log: Round 0 skipped by owner reque
 1. Hỏi structured questions (max 3 lượt, gộp Reference Discovery + Empathy Check)
 2. Áp dụng 1-push rule: Owner trả lời mơ hồ → push 1 lần duy nhất, sau đó dùng judgment
 3. Validate đủ 4 mandatory elements
-4. Tạo Product Brief → `pipeline-output/{runId}/po/product-brief.md`
+4. Tạo Product Brief → `products/{team}/product-brief.md`
 5. Owner confirm → chuyển sang Premise Check
 
 **Vietnamese high-context:** Interpret, don't reject. "Làm cái app đó" → extract intent.
@@ -57,12 +57,12 @@ Owner nói "cứ build đi" → ghi decision-log: Round 0 skipped by owner reque
 ### Mode B1 — Discovery Brief Handler
 
 Extract 4 mandatory elements → discard non-prototype analysis → ask 1 clarify nếu cần → Tạo Product Brief → confirm.
-**Load:** `references/product-brief.template.md`
+**Load:** `references/output-templates/product-brief.template.md`
 
 ### Mode C — Spec Analyzer
 
 Output: Completeness matrix (9 elements) + Quality check + Gap analysis + Recommendations.
-**Save:** `pipeline-output/{runId}/po/spec-analysis.md`
+**Save:** `products/{team}/spec-analysis.md`
 
 ### Mode D — Modify
 
@@ -70,7 +70,7 @@ Output: Completeness matrix (9 elements) + Quality check + Gap analysis + Recomm
 
 **Trigger:** Owner nói "sửa cái này", "thay đổi chỗ này", "update feature X", "modify", hoặc reference đến màn hình/feature đang có.
 
-**Load:** `references/requirement-gathering.md` (section Modify), `references/product-brief.template.md` (sections 10-12), `references/common-errors.md`
+**Load:** `references/requirement-gathering.md` (section Modify), `references/output-templates/product-brief.template.md` (sections 10-12), `references/common-errors.md`
 
 #### Input Requirements (3 mandatory cho Modify)
 
@@ -80,7 +80,7 @@ Output: Completeness matrix (9 elements) + Quality check + Gap analysis + Recomm
 | 2 | **Change Reason** — tại sao thay đổi (business/UX rationale) | ✅ | Hỏi Owner: "Tại sao cần sửa chỗ này?" |
 | 3 | **Expected Outcome** — sau khi sửa, nó phải như thế nào | ✅ | Hỏi Owner: "Sửa xong, user trải nghiệm khác gì?" |
 | 4 | **Screenshot hiện tại** | Recommended | Owner cung cấp khi chat — KHÔNG nằm trong brief |
-| 5 | **Design spec JSON hiện tại** | Nếu có | Check `pipeline-output/{runId}/` hoặc hỏi Owner |
+| 5 | **Design spec JSON hiện tại** | Nếu có | Check `products/{team}/` hoặc hỏi Owner |
 
 #### Workflow
 
@@ -90,7 +90,7 @@ Output: Completeness matrix (9 elements) + Quality check + Gap analysis + Recomm
    - Có design spec JSON? → Reference, KHÔNG gen mới
    - Có product brief cũ? → Extend, không viết lại
    - Không có gì? → Note: "Không có spec hiện tại, brief mô tả delta only"
-4. **Tạo Product Brief (Modify)** → fill sections 10-12 trong template → `pipeline-output/{runId}/po/product-brief.md`
+4. **Tạo Product Brief (Modify)** → fill sections 10-12 trong template → `products/{team}/product-brief.md`
 5. Owner confirm → chuyển sang Premise Check (câu hỏi adapt cho Modify context)
 
 #### Nguyên tắc Component-Level
@@ -111,7 +111,7 @@ Output: Completeness matrix (9 elements) + Quality check + Gap analysis + Recomm
 
 ---
 
-## Premise Check + Scope Options (MANDATORY trước Phase B của po-orchestrator)
+## Premise Check + Scope Options (MANDATORY trước Component Plan)
 
 ### Premise Check (3 câu, gộp vào 1 AskUserQuestion)
 
@@ -131,7 +131,7 @@ SCOPE C: Wow Factor — Animations, edge states, tablet. 9/10. (chỉ khi Owner 
 RECOMMENDATION: [X] vì [lý do liên quan mục đích prototype].
 ```
 
-Owner chọn → scope lock → po-orchestrator chuyển sang Phase B (product-craft).
+Owner chọn → scope lock → main agent delegate design-studio.
 
 ---
 
@@ -141,6 +141,7 @@ Sau 4 Mandatory Elements, chủ động hỏi (gộp vào clarify):
 - "Có app/feature/screenshot nào muốn tham khảo không?"
 - "Có PRD, spec, hoặc tài liệu hệ thống liên quan không?"
 
+QMD search: tra PRDs cũ, research docs, competitive context khi cần.
 **Load:** `references/qmd-guide.md` — lookup workflow, collections, rules.
 
 ---
@@ -149,10 +150,11 @@ Sau 4 Mandatory Elements, chủ động hỏi (gộp vào clarify):
 
 > Nguyên tắc: BẤT KỲ lý do nào để skip một required step đều INVALID
 > trừ khi owner explicitly approve VÀ approval ghi vào decision-log.
+> Danh sách dưới đây là ví dụ phổ biến, KHÔNG phải danh sách đầy đủ.
 
 - "Requirements clear đủ rồi" → INVALID. 9 Elements check > judgment.
 - "User biết rõ mình muốn gì" → INVALID. Challenge premises (Round 0).
-- "Skip product-brief vì chỉ có text" → INVALID. Product brief luôn required trước Phase B.
+- "Skip product-brief vì chỉ có text" → INVALID. Product brief luôn required trước design-studio.
 - "Modify nhỏ nên không cần brief" → INVALID. Mọi thay đổi cần brief để design có context đúng.
 - "Sửa luôn cả màn hình cho nhanh" → INVALID. Modify = component-level. Muốn làm lại cả màn hình → chuyển Mode B.
 
@@ -163,5 +165,5 @@ Sau 4 Mandatory Elements, chủ động hỏi (gộp vào clarify):
 - Max 3 lượt hỏi clarify (mỗi lượt gộp nhiều câu)
 - 1-push rule: Owner mơ hồ → push 1 lần → dùng judgment + ghi assumption
 - Mọi câu hỏi PHẢI follow AskUserQuestion 4-step format (references/question-format.md)
-- Sau mỗi non-trivial interaction, append observation vào `pipeline-output/{runId}/po/decision-log.md`
-- Khi blocked → return về po-orchestrator, KHÔNG dừng im
+- Sau mỗi non-trivial interaction, append observation vào `feedback/observations.md`
+- Khi blocked → return về main agent, KHÔNG dừng im

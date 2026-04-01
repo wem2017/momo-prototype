@@ -20,7 +20,7 @@ Mọi build decision bắt đầu từ câu hỏi này.
 
 ## Round 0 — Problem Framing
 
-Round 0 = challenge problem framing TRƯỚC solutioning. Mandatory cho DISCOVERY tier. Hỏi "vấn đề thực sự là gì?" trước khi hỏi "build cái gì?" Protocol chi tiết: `.claude/skills/product-craft/SKILL.md` (Round 0 section).
+Round 0 = challenge problem framing TRƯỚC solutioning. Mandatory cho DISCOVERY tier. Hỏi "vấn đề thực sự là gì?" trước khi hỏi "build cái gì?" Protocol chi tiết: `skills/product-craft/SKILL.md` (Round 0 section).
 
 ---
 
@@ -46,9 +46,9 @@ Round 0 = challenge problem framing TRƯỚC solutioning. Mandatory cho DISCOVER
 
 ### Khi trigger SPLIT:
 
-- Save progress vào `pipeline-output/{runId}/po/`
-- Return "partial — cần session tiếp" to po-orchestrator
-- po-orchestrator re-delegate: "Continue from [last step]. Read [saved artifacts] first."
+- Save progress vào products/{team}/
+- Return "partial — cần session tiếp" to main agent
+- Main agent re-delegate CÙNG subagent: "Continue from [last step]. Read [saved artifacts] first."
 
 ### Rule Refresh (preventive, không cần trigger):
 

@@ -15,7 +15,13 @@ description: ALWAYS invoke this skill FIRST for any UI development task in this 
 
 When creating a **new** React Native prototype project (no existing Expo project in the working directory):
 
-1. **Clone the template**:
+1. **Check and install Yarn**:
+   ```bash
+   which yarn || npm install --global yarn
+   ```
+   If Yarn is not found, install it globally via npm. This is required for the template's package management.
+
+2. **Clone the template**:
    ```bash
    git clone https://github.com/wem2017/prototype-kits.git prototype-kits
    cd prototype-kits
@@ -23,14 +29,14 @@ When creating a **new** React Native prototype project (no existing Expo project
    ```
    This template includes: Expo 54, React Native 0.81.5, all `@momo-kits/*` dependencies, localization, IPhoneBezel web preview, and path aliases (`@/*`, `@components`, `@assets`, `@configs`).
 
-2. **Install dependencies**:
+3. **Install dependencies**:
    ```bash
    yarn install
    ```
 
-3. **Generated screens go in `src/`** — all new screen files must be placed under `src/` (e.g., `src/HomeScreen.tsx`, `src/ProfileScreen.tsx`).
+4. **Generated screens go in `src/`** — all new screen files must be placed under `src/` (e.g., `src/HomeScreen.tsx`, `src/ProfileScreen.tsx`).
 
-4. **Register screens in `App.tsx`** — update the `screen` prop in `NavigationContainer` to point to the entry screen, and use navigation to push to other screens.
+5. **Register screens in `App.tsx`** — update the `screen` prop in `NavigationContainer` to point to the entry screen, and use navigation to push to other screens.
 
 ## Workflow — Before Generating Code
 
@@ -52,15 +58,7 @@ Ask the user explicitly:
 
 Wait for the user's answer before proceeding.
 
-### Step 3: Ask User — Fresh or Update?
-Ask the user explicitly:
-> **Do you want to:**
-> 1. **Fresh coding** — Create new screen(s) from scratch
-> 2. **Update existing code** — Modify existing screen(s)/component(s)
-
-Wait for the user's answer before proceeding.
-
-### Step 4: Ask User — Preview Method
+### Step 3: Ask User — Preview Method
 Ask the user explicitly:
 > **How would you like to preview the output?**
 > 1. **Expo app (QR code)** — Scan QR code with Expo Go app on your phone *(Recommended)*
@@ -82,14 +80,14 @@ Ask the user explicitly:
 
 Wait for the user's answer before proceeding.
 
-### Step 5: Generate Code
+### Step 4: Generate Code
 - **Fresh**: Create new `.tsx` files under `src/` following the template pattern (see `src/Welcome.tsx` in the prototype-kits template as reference)
 - **Update**: Read the target file(s) first, then apply modifications
 
 ## How to Use
 
 1. **Identify platform**: `.tsx`/`.ts` = React Native, `.kt` = Compose
-2. **Run the workflow** (Step 1–5 above) — confirm git status, ask fresh/update, ask preview method, then generate
+2. **Run the workflow** (Step 1–4 above) — confirm git status, ask fresh/update, ask preview method, then generate
 3. **If input is a design spec JSON** → load `references/design-spec-structure.md` for full schema mapping
 4. **Find component** in catalog tables below
 5. **Load reference file** for exact API

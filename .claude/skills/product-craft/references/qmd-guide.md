@@ -61,6 +61,38 @@ Khi component KHÔNG có trong `components/` → flag corpus gap, KHÔNG substit
 | `getting-started/` | Setup, conventions, onboarding | Khi cần project setup context |
 | `code-convention.md` | File headers, AI markers, 500-line limit | Khi generate new files |
 
+## Additional Search Examples
+
+```
+# Tìm Kit API import path:
+search("kit-api-reference", collection="momo-prototype-kit")
+
+# Tìm navigation pattern:
+search("bottomsheet", collection="momo-prototype-kit")
+
+# Tìm layout rules:
+search("useGridLayout", collection="momo-prototype-kit")
+
+# Tìm color tokens:
+get("tokens/colors.md", collection="momo-prototype-kit")
+
+# Tìm typography tokens:
+get("tokens/typography.md", collection="momo-prototype-kit")
+```
+
+---
+
+## Subagent QMD Usage
+
+| Subagent      | QMD Usage                                           | Frequency |
+|--------------|-----------------------------------------------------|-----------|
+| product-craft | Search PRDs cũ, research docs, competitive context  | As needed |
+| design-studio | Lookup component specs, verify component exists      | Every run |
+| code-forge   | Load specs for build, verify token names             | Every run |
+| code-polish  | Cross-check compliance against corpus                | Every run |
+
+---
+
 ## Icon Naming Rules
 
 - Icon names PHẢI lấy từ `tokens/icons.md` (462 icons, 20 categories)
@@ -71,10 +103,21 @@ Khi component KHÔNG có trong `components/` → flag corpus gap, KHÔNG substit
 
 ---
 
-## Subagent QMD Usage
+## Common Searches
 
-| Subagent | QMD Usage | Frequency |
-|---------|-----------|-----------|
-| product-craft | Search PRDs cũ, research docs, competitive context | As needed |
-| design-specialist | Lookup component specs, verify component exists | Every run |
-| dev-engineer | Load specs for build, verify token names | Every run |
+```
+# Tìm component spec
+search("BottomSheet", collection="momo-prototype-kit")
+
+# Tìm color tokens
+search("color tokens", collection="momo-prototype-kit")
+
+# Tìm component theo tính năng
+vector_search("bottom navigation tab bar", collection="momo-prototype-kit")
+
+# Load specific file
+get("components/bottom-sheet.md", collection="momo-prototype-kit")
+
+# Load nhiều files
+multi_get("components/button*.md", collection="momo-prototype-kit")
+```

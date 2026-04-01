@@ -4,14 +4,11 @@ Mỗi step PHẢI lưu artifact. Không có gì chỉ nằm trong conversation.
 
 | Artifact | File | Owner |
 |----------|------|-------|
-| Product Brief | `pipeline-output/{runId}/po/product-brief.md` | product-craft |
-| PRD | `pipeline-output/{runId}/po/prd.md` | product-craft |
-| User Stories | `pipeline-output/{runId}/po/user-stories.yaml` | product-craft |
-| Task Graph | `pipeline-output/{runId}/po/task-graph.json` | product-craft |
-| Acceptance Criteria | `pipeline-output/{runId}/po/acceptance-criteria.md` | product-craft |
-| Design Specs | `pipeline-output/{runId}/design/{screen-name}.json` | design-specialist |
-| Decision Log | `pipeline-output/{runId}/po/decision-log.md` | all (append-only) |
-| Spec Analysis | `pipeline-output/{runId}/po/spec-analysis.md` | product-craft (Mode C) |
+| Product Brief | `products/{team}/product-brief.md` | product-craft |
+| Design Specs | `products/{team}/{screen-name}-design-specs.json` | design-studio (single owner) |
+| Decision Log | `products/{team}/decision-log.md` | all (append-only) |
+| Spec Analysis | `products/{team}/spec-analysis.md` | product-craft (Mode C) |
+| Prototype Code | `prototype-kits/src/{ScreenName}.tsx` | code-forge |
 
 Mọi AskUserQuestion response, Gate decision, Premise check, Scope lock → append `decision-log.md`.
 

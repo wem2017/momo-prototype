@@ -221,14 +221,23 @@ Bạn có app/feature/screenshot nào muốn tham khảo không?
 Ví dụ: "giống màn hình X của app Y", hoặc screenshot từ Figma/Zeplin.
 ```
 
+- Nếu có → lưu vào `products/{team}/references/` hoặc note trong build plan comment
+- Giúp align expectation sớm → ít surprise khi deliver
+
 ### 2. Existing Docs — PRD, spec, tài liệu hệ thống
 
-**Hỏi khi feature đã có trong roadmap/backlog.**
+**Hỏi khi feature đã có trong roadmap/backlog** (Owner đề cập đến feature đang plan hoặc đã kick-off).
 
 ```
 Feature này có PRD, spec, hoặc tài liệu hệ thống nào liên quan không?
 Nếu có, share cho tôi — tôi sẽ build sát với spec hơn.
 ```
+
+- Nếu có → đọc và lưu:
+  - Product context (user personas, business rules) → `products/{team}/`
+  - Design guidelines, tokens bổ sung → `references/design-standards.md` (append)
+  - Tech specs, API contracts, data models → `shared/code-convention.md` (append)
+- **KHÔNG override** corpus data — chỉ bổ sung context chưa có
 
 ### 3. Existing Code — Widget/component đã standardize
 
@@ -236,12 +245,20 @@ Nếu có, share cho tôi — tôi sẽ build sát với spec hơn.
 
 ```
 Có code component nào đã build sẵn theo design system chưa?
+Ví dụ: widget, shared component đã dùng trong production.
 Nếu có, share cho tôi — tôi sẽ dùng luôn thay vì build lại.
 ```
+
+- Nếu có → đọc code, extract pattern, lưu vào `shared/code-convention.md` hoặc `products/{team}/`
+- Tránh build lại cái đã có sẵn → tiết kiệm effort, output consistent với production
 
 ---
 
 ## Empathy Detection — Phát hiện lo lắng trong yêu cầu
+
+Owner không phải lúc nào cũng nói thẳng lo lắng. SKILL cần detect signals và respond đúng cách.
+
+### Bảng Signal → Response
 
 | Signal trong yêu cầu | Cảm xúc | Response (acknowledge TRƯỚC, technical SAU) |
 |----------------------|---------|---------------------------------------------|
@@ -255,10 +272,11 @@ Nếu có, share cho tôi — tôi sẽ dùng luôn thay vì build lại.
 - Acknowledge cảm xúc TRƯỚC → giải quyết technical SAU
 - KHÔNG bỏ qua signals, chỉ hỏi technical questions
 - KHÔNG coach hay dạy đời — empathize rồi hành động
+- Nếu phát hiện nhiều signals cùng lúc → address signal mạnh nhất, note các signal khác
 
 ---
 
-## Checklist trước khi chuyển sang Phase B
+## Checklist trước khi chuyển sang Plan
 
 - [ ] Problem: Rõ ràng, cụ thể
 - [ ] Target user: Biết là ai, context sử dụng
@@ -266,10 +284,11 @@ Nếu có, share cho tôi — tôi sẽ dùng luôn thay vì build lại.
 - [ ] Mục đích: Biết demo cho ai, để làm gì
 - [ ] Success criteria: Có tiêu chí đo lường (hoặc Owner xác nhận không cần)
 - [ ] Scope: Đã giới hạn cho prototype
-- [ ] References: Đã hỏi visual references + existing docs/code
+- [ ] References: Đã hỏi visual references + existing docs/code (hoặc Owner xác nhận không có)
 - [ ] Empathy: Đã check và respond nếu có signal lo lắng
 - [ ] 1-Push Rule: Core answers đủ cụ thể (hoặc đã push 1 lần)
-- [ ] Premise Check: Owner đã confirm 3 premise questions
-- [ ] Scope Option: Owner đã chọn A/B/C
 
-Tất cả check → **tạo Product Brief** → Owner confirm → po-orchestrator chuyển Phase B (product-craft).
+Tất cả check → **tạo Product Brief** (`products/{team}/product-brief.md`) → Owner confirm → chuyển sang Premise Check + Scope Options (Mode A Step 1c).
+Còn thiếu → hỏi lại đúng phần thiếu.
+
+Template Product Brief: `shared/output-templates/product-brief.template.md`

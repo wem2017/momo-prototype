@@ -35,7 +35,7 @@
 
 ### Implicit Context
 **Pattern:** User assumes you know MoMo product context without explaining
-**Handle:** Use MoMo domain knowledge to fill gaps.
+**Handle:** Use MoMo domain knowledge to fill gaps. Check `products/` folder for team context.
 
 ### Vague Quantifiers
 **Pattern:** "Nhiều" (many), "một số" (some), "vài cái" (a few)
@@ -75,7 +75,7 @@
 ### Unrealistic Mock Data
 **Signal:** "User 1", "$100", "01/01/2000", English names
 **Fixes:**
-- Vietnamese names (Nguyễn, Trần, Lê, etc.)
+- Vietnamese names from `shared/code-convention.md` mock data
 - VND amounts: realistic ranges (50,000đ — 10,000,000đ)
 - Recent dates (within last 30 days)
 - Vietnamese phone format: 09xx-xxx-xxx
