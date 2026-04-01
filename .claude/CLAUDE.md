@@ -1,6 +1,6 @@
 # AI Feature Pipeline
 
-Automated feature delivery: PO brief → PRD → Design Spec JSON → Code + Preview.
+Automated feature delivery: Raw brief → Product Brief → PRD → Design Spec JSON → Code + Preview.
 
 ## Project purpose
 3 AI agent stages replace the manual PO/Design/Dev workflow.
@@ -8,14 +8,23 @@ Human PO provides a brief; pipeline outputs production-ready code with live prev
 
 ## Pipeline flow
 ```
-Stage 1: PO Agent          → PRD, user stories, task graph
-         (po-orchestrator)    uses: po-requirements skill
+Stage 1: PO Agent          → Product Brief (Phase A) + PRD, user stories, task graph (Phase B)
+         (po-orchestrator)    uses: product-craft skill (Phase A) → po-requirements skill (Phase B)
               ↓
 Stage 2: Design Agent       → Design Spec JSON per screen
          (design-specialist)  uses: ui-composer skill
               ↓
 Stage 3: Dev Agent          → React Native code + live preview
          (dev-engineer)       uses: design-system-kits skill
+```
+
+### Stage 1 detail (po-orchestrator two-phase)
+```
+Raw Feature Brief
+  ↓ Phase A — product-craft skill
+Product Brief (validated with owner, premise check, scope lock)
+  ↓ Phase B — po-requirements skill (parallel sub-agents)
+PRD + User Stories + Task Graph + Acceptance Criteria
 ```
 
 ## Tech stack
@@ -29,7 +38,7 @@ Stage 3: Dev Agent          → React Native code + live preview
 ## Key commands
 ```bash
 npm run pipeline "feature brief"   # full 3-stage run
-npm run po "brief"                 # Stage 1 only
+npm run po "brief"                 # Stage 1 only (Phase A + B)
 npm run design "prd-path"          # Stage 2 only
 npm run dev "spec-path"            # Stage 3 only
 npm run test                       # Vitest suite
@@ -37,16 +46,18 @@ npm run lint                       # ESLint + tsc --noEmit
 ```
 
 ## Agents → Skills mapping
-| Agent | Skill | Input | Output |
-|-------|-------|-------|--------|
-| po-orchestrator | po-requirements | Feature brief | PRD, user stories, task graph |
-| design-specialist | ui-composer | PRD + user stories | Design Spec JSON per screen |
-| dev-engineer | design-system-kits | Design Spec JSON | React Native .tsx + live preview |
+| Agent | Phase | Skill | Input | Output |
+|-------|-------|-------|-------|--------|
+| po-orchestrator | A | product-craft | Raw feature brief | Product Brief (validated) |
+| po-orchestrator | B | po-requirements | Product Brief | PRD, user stories, task graph |
+| design-specialist | — | ui-composer | PRD + user stories | Design Spec JSON per screen |
+| dev-engineer | — | design-system-kits | Design Spec JSON | React Native .tsx + live preview |
 
 ## Folder map
 - .claude/agents/         — Agent definitions (po-orchestrator, design-specialist, dev-engineer)
 - .claude/skills/         — Skill definitions with references
-  - po-requirements/      — Stage 1 skill
+  - product-craft/        — Stage 1 Phase A skill (product brief from vague input)
+  - po-requirements/      — Stage 1 Phase B skill (PRD, user stories, task graph)
   - ui-composer/          — Stage 2 skill (design spec composition)
   - design-system-kits/   — Stage 3 skill (code generation + preview)
   - code-development/     — General TypeScript dev conventions
